@@ -1,13 +1,91 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* css background-image generated using https://10015.io/tools/css-background-pattern-generator */
+.background {
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #000000 0%, #f5f5dc 100%);
+  overflow: hidden; /* Ensures stars stay within the background */
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/night-sky.png');
+  z-index: -1;
+  animation: starsAnimation 60s linear infinite;
+}
+
+@keyframes starsAnimation {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #ffffff; /* White color for stars */
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkling 3s infinite;
+}
+
+@keyframes twinkling {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: conic-gradient(#0000 10%, #474bff);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
+  animation: spinner-zp9dbg 1s infinite linear;
+}
+
+@keyframes spinner-zp9dbg {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+.moving-text {
+  animation: moveText 4s linear infinite alternate; /* Adjust the animation duration and timing function as needed */
+}
+
+@keyframes moveText {
+  from {
+    transform: translateX(-20px); /* Adjust the distance you want the text to move */
+  }
+  to {
+    transform: translateX(20px); /* Adjust the distance you want the text to move */
+  }
 }
